@@ -1,6 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 
 package com.mycompany.praktikum_9;
 
@@ -11,9 +8,10 @@ public class Praktikum_9 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
         Perpustakaan perpusUnila = new Perpustakaan("Smart Library Unila");
+        
         perpusUnila.bukaPerpustakaan();
+        perpusUnila.muatDataDariFile();
         
         boolean isRunning = true;
         
@@ -21,7 +19,6 @@ public class Praktikum_9 {
         System.out.println("    SELAMAT DATANG DI SMART LIBRARY!    ");
         System.out.println("========================================");
         
-        // Memasukkan data awal (Dummy Data) melalui method Perpustakaan (Aggregation)
         try {
             perpusUnila.tambahKoleksi(new BukuCetak("Pembelajaran Java", "Suryani", 2023, 250));
             perpusUnila.tambahKoleksi(new EBook("Struktur Data", "Khatimah", 2022, 15));
@@ -39,9 +36,10 @@ public class Praktikum_9 {
             System.out.println("2. Lihat Daftar Koleksi");
             System.out.println("3. Cari Koleksi");
             System.out.println("4. Manajemen Anggota");
-            System.out.println("5. Peminjaman (Demo Association)");
-            System.out.println("6. Keluar");
-            System.out.print("Pilih Menu: 1-6: ");
+            System.out.println("5. Peminjaman");
+            System.out.println("6. Baca File Log Transaksi (Demo File I/O Teks)");
+            System.out.println("7. Simpan & Keluar");
+            System.out.print("Pilih Menu: 1-7: ");
             
             try {
                 int pilihan = scanner.nextInt();
@@ -150,6 +148,11 @@ public class Praktikum_9 {
                         }
                     }
                     case 6 -> {
+                        perpusUnila.bacaLogTransaksi();
+                    }
+                    case 7 -> {
+                        System.out.println("Menyimpan sesi ke database internal...");
+                        perpusUnila.simpanDataKeFile();
                         System.out.println("Terima kasih telah menggunakan Smart Library!");
                         isRunning = false;
                     }

@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.praktikum_9;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class TransaksiPeminjaman {
     public static void prosesPinjam(Anggota anggota, Koleksi koleksi) {
@@ -12,10 +12,17 @@ public class TransaksiPeminjaman {
         System.out.println("Status   : Berhasil dicatat di sistem.");
         
         koleksi.caraPinjam();
-        
         if (koleksi instanceof DapatDipinjam) {
            ((DapatDipinjam) koleksi).prosesPinjamFisik();
         }
-        System.out.println("-----------------------");
+        System.out.println("==========================");
+        
+        try (FileWriter pipaTulis = new FileWriter("log_transaksi.txt", true)) {
+            String log = "Peminjam: " + anggota.getNama() + " | Item: " + koleksi.getJudul() + "\n";
+            pipaTulis.write(log);
+            pipaTulis.close();
+        }catch (IOException e) {
+            System.out.println("Peringatan: Gagal menulis log transaksi ke file. " +e.getMessage());
+        }
     }
 }

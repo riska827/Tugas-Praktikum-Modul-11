@@ -4,7 +4,11 @@
  */
 package com.mycompany.praktikum_9;
 
-public class Anggota {
+import java.io.Serializable;
+
+public class Anggota implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String npm;
     private String nama;
     

@@ -1,6 +1,10 @@
 package com.mycompany.praktikum_9;
 
-public abstract class Koleksi {
+import java.io.Serializable;
+
+public abstract class Koleksi implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     protected String judul;
     protected String pengarang;
     protected int tahunTerbit;
